@@ -145,7 +145,7 @@ router.post("/:token/demo-payment", optionalAuth, async (req, res) => {
 
     hold.paymentMethod = method;
     hold.paymentStatus = outcome === "success" ? "succeeded" : "failed";
-    hold.transactionId = `DEMO-${crypto.randomUUID()}`;
+    hold.transactionId = `Demo-${crypto.randomUUID()}`;
     hold.paymentCompletedAt =
       outcome === "success" ? new Date() : null;
 

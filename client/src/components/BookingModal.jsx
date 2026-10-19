@@ -247,7 +247,7 @@ function BookingModal({ movie, onClose }) {
 
       const payment = await paymentRes.json();
       if (!paymentRes.ok || payment.success !== true) {
-        throw new Error(payment.message || "Demo payment failed.");
+        throw new Error(payment.message || "Payment failed.");
       }
 
       setTransactionId(payment.transactionId || "");
