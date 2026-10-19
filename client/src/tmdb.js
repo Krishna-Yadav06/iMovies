@@ -1,5 +1,5 @@
 
-const BASE = "https://imovies-9zv6.onrender.com";
+const BASE = `${import.meta.env.VITE_API_URL}/api/tmdb`;
 
 export async function getMovies(endpoint = "/popular") {
   const response = await fetch(`${BASE}${endpoint}`);
