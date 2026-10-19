@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import "./BookingHistory.css";
 
-const API = "https://imovies-9zv6.onrender.com";
+const API = "https://imovies-9zv6.onrender.com/api";
 
 function BookingHistory({ user, onBack }) {
   const [bookings, setBookings] = useState([]);

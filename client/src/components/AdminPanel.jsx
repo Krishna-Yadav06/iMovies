@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import "./AdminPanel.css";
 
-const API = "https://imovies-9zv6.onrender.com";
+const API = "https://imovies-9zv6.onrender.com/api";
 
 const empty = {
   title: "",
