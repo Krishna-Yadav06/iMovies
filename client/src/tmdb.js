@@ -1,5 +1,5 @@
 
-const BASE = "http://localhost:5000/api/tmdb";
+const BASE = "https://imovies-9zv6.onrender.com";
 
 export async function getMovies(endpoint = "/popular") {
   const response = await fetch(`${BASE}${endpoint}`);

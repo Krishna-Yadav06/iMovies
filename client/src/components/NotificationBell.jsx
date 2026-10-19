@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import "./NotificationBell.css";
 
-const API = "http://localhost:5000/api/notifications";
+const API = "https://imovies-9zv6.onrender.com";
 
 export default function NotificationBell() {
   const [notifications, setNotifications] = useState([]);

@@ -6,7 +6,7 @@ import BookingCheckout from "./BookingCheckout";
 import PaymentD from "./PaymentD";
 import "./BookingModal.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://imovies-9zv6.onrender.com";
 const theatres = ["PVR", "INOX", "Cinepolis"];
 const showTimes = ["10:00 AM", "1:30 PM", "4:45 PM", "8:00 PM"];
 
