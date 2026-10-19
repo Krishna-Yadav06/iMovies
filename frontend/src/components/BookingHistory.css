@@ -1,0 +1,179 @@
+
+.booking-history {
+  min-height: 100vh;
+  background: #100e12;
+  color: #f7f2e8;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 6%;
+  border-bottom: 1px solid #302820;
+}
+
+.history-back {
+  background: transparent;
+  border: 1px solid #54442b;
+  color: #e6c27a;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.history-brand {
+  color: #e6c27a;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.history-content {
+  width: min(1000px, 88%);
+  margin: 0 auto;
+  padding: 55px 0;
+}
+
+.history-label {
+  color: #d7b56d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.history-content h1 {
+  font-size: clamp(30px, 5vw, 44px);
+  margin: 8px 0;
+}
+
+.history-subtitle {
+  color: #aaa3a0;
+  margin-bottom: 32px;
+}
+
+.history-list {
+  display: grid;
+  gap: 18px;
+}
+
+.history-card {
+  background: #19161b;
+  border: 1px solid #39302a;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.history-card-top,
+.history-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.history-card-top h2 {
+  margin: 8px 0 22px;
+  font-size: 23px;
+}
+
+.history-status {
+  color: #8cdda5;
+  background: #183323;
+  padding: 7px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.history-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  padding: 20px 0;
+  border-top: 1px dashed #514333;
+  border-bottom: 1px dashed #514333;
+}
+
+.history-details div {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.history-details span,
+.history-card-bottom span {
+  color: #a9a1a0;
+  font-size: 12px;
+}
+
+.history-details strong {
+  overflow-wrap: anywhere;
+}
+
+.history-card-bottom {
+  padding-top: 18px;
+}
+
+.history-card-bottom strong {
+  color: #e6c27a;
+  font-size: 21px;
+}
+
+.history-message {
+  color: #d8c9ac;
+  padding: 30px 0;
+}
+
+.history-empty {
+  padding: 45px 20px;
+  text-align: center;
+  background: #19161b;
+  border: 1px solid #39302a;
+  border-radius: 14px;
+}
+
+.history-empty p {
+  color: #aaa3a0;
+}
+
+.history-empty button {
+  background: #d7b56d;
+  color: #17120b;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-top: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .history-header {
+    padding: 16px 5%;
+  }
+
+  .history-content {
+    width: 90%;
+    padding: 35px 0;
+  }
+
+  .history-card {
+    padding: 17px;
+  }
+
+  .history-card-top {
+    align-items: flex-start;
+  }
+
+  .history-card-top h2 {
+    font-size: 19px;
+  }
+
+  .history-details {
+    gap: 18px 12px;
+  }
+
+  .history-card-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

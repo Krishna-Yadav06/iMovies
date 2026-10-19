@@ -1,0 +1,361 @@
+
+.seat-selection {
+  width: 100%;
+  color: #f5f2eb;
+}
+
+.seat-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.seat-heading h2 {
+  margin: 0;
+  color: #f5f0e5;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.seat-subtitle {
+  margin: 9px 0 0;
+  color: #a8a093;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.seat-count {
+  flex-shrink: 0;
+  padding: 10px 13px;
+  border: 1px solid #6b5632;
+  border-radius: 11px;
+  background: #282116;
+  color: #f0d596;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.seat-count span {
+  color: #b7ad9a;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.screen-area {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 490px);
+  margin: 0 auto 36px;
+  padding-top: 14px;
+}
+
+.screen-glow {
+  position: absolute;
+  top: -5px;
+  width: 72%;
+  height: 65px;
+  background: #d6b36a;
+  opacity: 0.12;
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.screen-shape {
+  position: relative;
+  width: 90%;
+  height: 27px;
+  border-top: 3px solid #d6b36a;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 -5px 20px #d6b36a1c;
+}
+
+.screen-area > span {
+  color: #a69a80;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.seat-map {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 0 20px;
+  scrollbar-color: #51432b #111110;
+  scrollbar-width: thin;
+}
+
+.seat-row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 8px;
+  min-width: 315px;
+}
+
+.row-label {
+  color: #a69a80;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.seat-row-group {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: clamp(4px, 1.3vw, 9px);
+}
+
+.cinema-seat {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1.05;
+  padding: 0;
+  border: 1px solid #5a5142;
+  border-radius: 6px 6px 4px 4px;
+  background: #211f1b;
+  color: #d9d0bf;
+  font-size: clamp(9px, 1.6vw, 12px);
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease,
+    transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.cinema-seat:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #e4c783;
+  background: #373023;
+}
+
+.cinema-seat.selected {
+  border-color: #f0d596;
+  background: linear-gradient(145deg, #f0d596, #c29a50);
+  color: #17130b;
+  font-weight: 850;
+  box-shadow: 0 3px 13px #d6b36a30;
+}
+
+.cinema-seat.booked {
+  border-color: #35332e;
+  background: #282724;
+  color: #666158;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.cinema-seat.held {
+  border-color: #a77834;
+  background: #46341c;
+  color: #f2c779;
+  cursor: not-allowed;
+}
+
+.cinema-seat:disabled:not(.selected) {
+  cursor: not-allowed;
+}
+
+.seat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 22px;
+  padding: 18px 0;
+  border-top: 1px solid #302b22;
+  border-bottom: 1px solid #302b22;
+}
+
+.seat-legend span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #b2a99a;
+  font-size: 11px;
+}
+
+.legend-seat {
+  display: inline-block;
+  width: 13px;
+  height: 12px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+.available-legend {
+  border-color: #5a5142;
+  background: #211f1b;
+}
+
+.selected-legend {
+  border-color: #f0d596;
+  background: #d6b36a;
+}
+
+.booked-legend {
+  border-color: #35332e;
+  background: #282724;
+}
+
+.held-legend {
+  border-color: #a77834;
+  background: #46341c;
+}
+
+.seat-error {
+  padding: 12px 14px;
+  border: 1px solid #744344;
+  border-radius: 10px;
+  background: #2b1919;
+  color: #ffb5ac;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.selected-seat-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 23px 0;
+}
+
+.selected-label {
+  margin: 0 0 8px;
+  color: #a69a80;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+}
+
+.selected-seat-numbers {
+  margin: 0;
+  color: #e8dfcf;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.seat-total {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.seat-total span {
+  display: block;
+  margin-bottom: 5px;
+  color: #a8a093;
+  font-size: 11px;
+}
+
+.seat-total strong {
+  color: #e4c783;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+
+.seat-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.seat-selection .booking-primary-button,
+.seat-selection .booking-secondary-button {
+  min-height: 46px;
+  border-radius: 10px;
+  padding: 0 20px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.seat-selection .booking-primary-button {
+  border: 1px solid #d6b36a;
+  background: linear-gradient(135deg, #e6ca86, #c29a50);
+  color: #17130b;
+}
+
+.seat-selection .booking-primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #f0d596;
+  background: linear-gradient(135deg, #f0d596, #d6b36a);
+}
+
+.seat-selection .booking-secondary-button {
+  border: 1px solid #40382c;
+  background: #191714;
+  color: #e5ddcd;
+}
+
+.seat-selection .booking-secondary-button:hover:not(:disabled) {
+  border-color: #8e7548;
+  background: #211d17;
+}
+
+.seat-selection .booking-primary-button:disabled,
+.seat-selection .booking-secondary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.seat-limit-note {
+  margin: 13px 0 0;
+  color: #a8a093;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .seat-heading {
+    gap: 9px;
+  }
+
+  .seat-count {
+    padding: 8px 9px;
+    font-size: 12px;
+  }
+
+  .seat-row {
+    min-width: 295px;
+    gap: 5px;
+  }
+
+  .seat-legend {
+    gap: 12px 16px;
+  }
+
+  .selected-seat-details {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .seat-total strong {
+    font-size: 20px;
+  }
+
+  .seat-actions {
+    flex-direction: column-reverse;
+  }
+
+  .seat-actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seat-selection *,
+  .seat-selection *::before,
+  .seat-selection *::after {
+    transition: none !important;
+  }
+}
