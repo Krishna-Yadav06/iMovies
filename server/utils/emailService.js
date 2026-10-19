@@ -31,24 +31,5 @@ async function sendBookingConfirmationEmail(b) {
   return data;
 }
 
-app.get("/api/test-email", async (req, res) => {
-  try {
-    const response = await fetch("https://api.resend.com/emails", {
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      },
-    });
 
-    res.json({
-      reachable: true,
-      status: response.status,
-      result: await response.text(),
-    });
-  } catch (error) {
-    res.status(500).json({
-      reachable: false,
-      error: error.message,
-    });
-  }
-});
 module.exports = { sendBookingConfirmationEmail };
