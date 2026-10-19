@@ -8,7 +8,14 @@ const methods = [
   { id: "netbanking", label: "Net Banking", icon: "▥", detail: "Pay through your bank" },
 ];
 
-function PaymentD({ amount, onSuccess, onCancel, loading, error }) {
+function PaymentD({
+  amount,
+  onSuccess,
+  onCancel,
+  loading,
+  error,
+  statusMessage,
+})  {
   const [method, setMethod] = useState("upi");
   const [upiId, setUpiId] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -164,8 +171,8 @@ function PaymentD({ amount, onSuccess, onCancel, loading, error }) {
           <div className="payment-demo-note">
             <span>ⓘ</span>
             <p>
-              <strong>Demo payment only</strong>
-              <small>Disclaimer : No real payment will be processed or charged.</small>
+              <strong>Disclaimer:</strong>
+              <small>No real payment will be processed or charged.</small>
             </p>
           </div>
 
@@ -174,8 +181,7 @@ function PaymentD({ amount, onSuccess, onCancel, loading, error }) {
             onClick={pay}
             disabled={loading}
           >
-            {loading ? "Processing..." : `Pay ₹${Number(amount).toLocaleString("en-IN")}`}
-            {!loading && <span>→</span>}
+            {loading? statusMessage || "Processing your demo payment..." : `Pay ₹${Number(amount).toLocaleString("en-IN")}`}
           </button>
 
           <button

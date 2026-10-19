@@ -34,10 +34,12 @@ function BookingModal({ movie, onClose }) {
   const [loadingSeats, setLoadingSeats] = useState(false);
   const [loadingHold, setLoadingHold] = useState(false);
   const [paying, setPaying] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState("");
   const [error, setError] = useState("");
   const [bookingId, setBookingId] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const [emailSent, setEmailSent] = useState(null);
+  
 
   const price = Number(movie?.ticketPrice ?? movie?.price) || 200;
   const poster = getPoster(movie);
@@ -215,8 +217,17 @@ function BookingModal({ movie, onClose }) {
       return;
     }
 
+    if (paying) return;
+
     setPaying(true);
     setError("");
+    setPaymentStatus("Processing your demo payment...");
+
+    const slowTimer = window.setTimeout(() => {
+      setPaymentStatus(
+        "This is taking longer than usual. Please keep this window open..."
+      );
+    }, 20000);
 
     try {
       const token = localStorage.getItem("imoviesToken");
@@ -240,6 +251,7 @@ function BookingModal({ movie, onClose }) {
       }
 
       setTransactionId(payment.transactionId || "");
+      setPaymentStatus("Payment processed. Confirming your booking...");
 
       const confirmRes = await fetch(
         `${API}/holds/${encodeURIComponent(holdToken)}/confirm`,
@@ -259,7 +271,9 @@ function BookingModal({ movie, onClose }) {
     } catch (err) {
       setError(err.message || "Could not complete demo payment.");
     } finally {
+      window.clearTimeout(slowTimer);
       setPaying(false);
+      setPaymentStatus("");
     }
   }
 
@@ -354,6 +368,7 @@ function BookingModal({ movie, onClose }) {
               <PaymentD
                 amount={amount}
                 loading={paying}
+                statusMessage={paymentStatus}
                 onCancel={() => {
                   setError("");
                   setStage("checkout");
@@ -428,13 +443,13 @@ function BookingModal({ movie, onClose }) {
                 </div>
 
                 <div className="movie-ticket-reference">
-                  <span>DEMO PAYMENT REFERENCE</span>
+                  <span>PAYMENT REFERENCE</span>
                   <strong>{transactionId || "Unavailable"}</strong>
                 </div>
               </div>
 
               <p className="booking-success-copy">
-                Demo payment only. No real money was charged.
+                No real money was charged.
               </p>
 
               <div className="movie-ticket-actions">

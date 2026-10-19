@@ -1,38 +1,54 @@
 
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-async function sendBookingConfirmationEmail(booking) {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_APP_PASSWORD,
-    },
-  });
-
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: booking.to,
-    subject: `Your iMovies booking is confirmed - ${booking.movieTitle}`,
-    text: `
-Hi,
-
-Your movie booking has been confirmed!
-
-Movie: ${booking.movieTitle}
-Theatre: ${booking.theatre}
-Date: ${booking.showDate}
-Time: ${booking.showTime}
-Seats: ${booking.seats.join(", ")}
-Total Amount: Rs. ${booking.amount}
-Booking ID: ${booking.bookingId}
-
-Thank you for choosing iMovies.
-Enjoy your movie!
-
-Team iMovies
+async function sendBookingConfirmationEmail(b) {
+  const { data, error } = await resend.emails.send({
+    from: "IMovies <onboarding@resend.dev>",
+    to: b.to,
+    subject: `🎬 Booking Confirmed - ${b.movieTitle}`,
+    html: `
+      <div style="background:#11111b;color:white;padding:28px;
+      font-family:Arial;border-radius:14px;max-width:480px;margin:auto">
+        <h1 style="color:#a78bfa">🎬 IMovies</h1>
+        <h2>Booking Confirmed!</h2>
+        <p>Your movie ticket is ready.</p>
+        <div style="background:#242237;padding:20px;border-radius:10px">
+          <h2>${b.movieTitle}</h2>
+          <p>📍 ${b.theatre}</p>
+          <p>📅 ${b.showDate} | 🕒 ${b.showTime}</p>
+          <p>💺 Seats: ${b.seats.join(", ")}</p>
+          <h2 style="color:#c4b5fd">₹${b.amount}</h2>
+          <p>Booking ID: ${b.bookingId}</p>
+        </div>
+        <p>Keep this email for your booking details.</p>
+        <p style="color:#a78bfa">Thanks for choosing IMovies ❤️</p>
+      </div>
     `,
   });
+
+  if (error) throw new Error(error.message);
+  return data;
 }
 
+app.get("/api/test-email", async (req, res) => {
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      },
+    });
+
+    res.json({
+      reachable: true,
+      status: response.status,
+      result: await response.text(),
+    });
+  } catch (error) {
+    res.status(500).json({
+      reachable: false,
+      error: error.message,
+    });
+  }
+});
 module.exports = { sendBookingConfirmationEmail };

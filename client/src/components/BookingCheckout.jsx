@@ -85,7 +85,7 @@ function BookingCheckout({
       </div>
 
       <div className="booking-demo-notice">
-        <strong>Development checkout</strong>
+        <strong>Checkout</strong>
         <p>
           This uses the project's test confirmation endpoint. It does not
           charge real money.
@@ -110,7 +110,7 @@ function BookingCheckout({
           onClick={onConfirm}
           disabled={paying || secondsLeft <= 0}
         >
-          {paying ? "Opening..." : "Proceed to demo payment"}
+          {paying ? "Opening..." : "Proceed to Payment"}
         </button>
       </div>
     </section>

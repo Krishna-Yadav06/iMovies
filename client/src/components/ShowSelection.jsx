@@ -186,15 +186,15 @@ function ShowSelection({
               onChange={(event) => setShowTime(event.target.value)}
             >
               {showTimes.map((time) => (
-                <option
-                  key={time}
-                  value={time}
-                  disabled={isPastTime(time)}
-                >
-                  {time}
-                  {isPastTime(time) ? " (Show Already Started)" : ""}
-                </option>
-              ))}
+              <option
+                key={time}
+                value={time}
+                disabled={isPastTime(time)}
+              >
+                {time}
+                {isPastTime(time) ? " (Showtime Passed)" : ""}
+              </option>
+            ))}
             </select>
           </div>
         </div>

@@ -44,9 +44,14 @@ function App() {
   }
 
   function bookMovie(movie) {
+  if (!user || !localStorage.getItem("imoviesToken")) {
     setSelectedMovie(movie);
+    setShowAuth(true);
+    return;
   }
 
+  setSelectedMovie(movie);
+}
   function closeBooking() {
     setSelectedMovie(null);
   }
@@ -63,9 +68,10 @@ function App() {
   }
 
   function handleLoginSuccess(loggedInUser) {
-    setUser(loggedInUser);
-    setShowAuth(false);
-  }
+  setUser(loggedInUser);
+  localStorage.setItem("imoviesUser", JSON.stringify(loggedInUser));
+  setShowAuth(false);
+}
 
   function handleLogout() {
     localStorage.removeItem("imoviesToken");
