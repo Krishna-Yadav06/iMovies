@@ -2,5 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#11111b"/>
   <rect x="13" y="13" width="38" height="38" rx="9" fill="#e8bd62"/>
-  <path d="M27 22h10v4h-3v12h3v4H27v-4h3V26h-3z" fill="#11111b"/>
+  <circle cx="32" cy="24" r="3" fill="#11111b"/>
+  <rect x="29" y="29" width="6" height="14" rx="2" fill="#11111b"/>
 </svg>
